@@ -1,0 +1,28 @@
+[package]
+name = "primegen"
+version = "0.2.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "A tool to test the 360-prime pattern at massive scales"
+
+[dependencies]
+num-bigint = "0.4"        # For arbitrary precision integers (BigUint)
+num-prime = "0.4.4"       # For primality testing with BigUint
+num-traits = "0.2"        # For Zero, One, ToPrimitive traits needed by BigUint
+num-integer = "0.1"       # For integer sqrt and other operations
+primal = "0.3"            # For efficient prime generation and factoring up to u64::MAX
+rayon = "1.7"             # For parallel processing
+indicatif = "0.17"        # For progress bars (optional but helpful)
+structopt = "0.3"         # For better command-line argument parsing
+log = "0.4"               # Logging framework
+env_logger = "0.10"       # Logger implementation
+
+[profile.release]
+opt-level = 3             # Maximum optimizations
+lto = true                # Link-time optimization
+codegen-units = 1         # Optimize for size
+panic = "abort"           # Remove panic unwinding overhead
+strip = true              # Strip symbols from binary
+
+[profile.dev]
+opt-level = 1             # Some optimizations even in debug mode
